@@ -10,8 +10,8 @@ months_count = 0
 total_profit_loss = 0
 previous_profit_loss = 0
 total_profit_loss_change = 0
-greatest_increase = ["", 0] # ensures that any increase encountered during the iteration will be larger than this initial value
-greatest_decrease = ["", float('inf')]  # Initialize with positive infinity to ensure iteration will be smaller than the initial value
+greatest_increase = ["", 0]
+greatest_decrease = ["", float('inf')]  # Initialize with positive infinity
 
 # Read the CSV file for PyBank analysis
 with open(budget_data_csv, newline="") as csvfile:
@@ -28,7 +28,7 @@ with open(budget_data_csv, newline="") as csvfile:
         # Calculate net total profit/loss
         total_profit_loss += int(row[1])
 
-        # Calculate change in profit/loss between the current month and the previous month
+        # Calculate change in profit/loss
         if months_count > 1:
             change = int(row[1]) - previous_profit_loss
             total_profit_loss_change += change
@@ -66,7 +66,7 @@ with open("PyBank/analysis/financial_analysis.txt", "w") as analysis_file:
     analysis_file.write(f"Greatest Increase in Profits: {greatest_increase[0]} (${greatest_increase[1]})\n")
     analysis_file.write(f"Greatest Decrease in Profits: {greatest_decrease[0]} (${greatest_decrease[1]})\n")
 
-# Initialize variables for election analysis separately to keep the code orginized and simple to understand 
+# Initialize variables for election analysis
 total_votes_count = 0
 candidate_votes_count = {}
 election_winner = ""
@@ -104,7 +104,7 @@ print("-------------------------")
 for candidate, votes in candidate_votes_count.items():
     percentage = (votes / total_votes_count) * 100
     print(f"{candidate}: {percentage:.3f}% ({votes})")
-    # Determine the winner by looping iteratively over the key-value pairs in the candidate_votes_count dictionary
+    # Determine the winner
     if votes > winner_votes_count:
         election_winner = candidate
         winner_votes_count = votes
